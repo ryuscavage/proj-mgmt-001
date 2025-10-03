@@ -1,0 +1,522 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Project Management Core Concepts</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: #1E293B; /* Dark Blue Background */
+            }
+            .chart-container {
+                position: relative;
+                width: 100%;
+                max-width: 450px;
+                margin-left: auto;
+                margin-right: auto;
+                height: 320px;
+                max-height: 400px;
+            }
+            @media (min-width: 768px) {
+                .chart-container {
+                    height: 400px;
+                }
+            }
+            .flow-arrow {
+                position: relative;
+                width: 100%;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .flow-arrow::after {
+                content: '▼';
+                font-size: 2rem;
+                color: #74C6A3;
+            }
+            .spinner {
+                border: 4px solid rgba(255, 255, 255, 0.3);
+                border-left-color: #00A6A6;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+        </style>
+    </head>
+    <body class="text-gray-200">
+
+        <div class="container mx-auto p-4 md:p-8">
+            <header class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-[#00A6A6] mb-2">The Anatomy of Project Management</h1>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto">A visual guide to the core concepts that drive successful project delivery, from foundational definitions to essential leadership skills.</p>
+            </header>
+
+            <main class="space-y-12">
+                <section id="definition" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-center mb-8 text-[#00A6A6]">What is a Project?</h2>
+                    <p class="text-center text-gray-700 mb-10 max-w-2xl mx-auto">A project is not just a task; it's a temporary and unique endeavor. Understanding its core characteristics is the first step to managing it effectively.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <div class="text-6xl mb-4">⏳</div>
+                            <h3 class="text-2xl font-semibold mb-2 text-[#F15A29]">Temporary</h3>
+                            <p class="text-gray-600">Every project has a defined beginning and end, marking its transient nature.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <div class="text-6xl mb-4">✨</div>
+                            <h3 class="text-2xl font-semibold mb-2 text-[#F15A29]">Unique</h3>
+                            <p class="text-gray-600">It produces a distinct product, service, or result that has not been created before.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <div class="text-6xl mb-4">📈</div>
+                            <h3 class="text-2xl font-semibold mb-2 text-[#F15A29]">Progressively Elaborated</h3>
+                            <p class="text-gray-600">Details become clearer and more specific as the project team learns more over time.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="hierarchy" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-center mb-8 text-[#00A6A6]">The Big Picture: Hierarchy of Work</h2>
+                     <p class="text-center text-gray-700 mb-10 max-w-2xl mx-auto">Projects don't exist in a vacuum. They are often part of larger programs and portfolios that align with the organization's strategic goals.</p>
+                    <div class="flex flex-col items-center">
+                        <div class="w-full max-w-md bg-[#F15A29] text-white p-4 rounded-lg text-center shadow-lg">
+                            <h3 class="text-xl font-bold">Portfolio Management</h3>
+                            <p class="text-sm">Aligns with strategic business goals.</p>
+                        </div>
+                        <div class="flow-arrow"></div>
+                        <div class="w-full max-w-md bg-[#F4A460] text-white p-4 rounded-lg text-center shadow-lg">
+                            <h3 class="text-xl font-bold">Program Management</h3>
+                            <p class="text-sm">Coordinates a group of related projects.</p>
+                        </div>
+                        <div class="flow-arrow"></div>
+                        <div class="w-full max-w-md bg-[#74C6A3] text-white p-4 rounded-lg text-center shadow-lg">
+                            <h3 class="text-xl font-bold">Project Management</h3>
+                            <p class="text-sm">Delivers a unique, temporary endeavor.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="comparison" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-center mb-8 text-[#00A6A6]">Projects vs. Operations</h2>
+                     <p class="text-center text-gray-700 mb-10 max-w-2xl mx-auto">It's crucial to distinguish between temporary projects that create change and ongoing operations that sustain the business.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="border-4 border-[#74C6A3] rounded-lg p-6">
+                            <h3 class="text-2xl font-semibold mb-4 text-center text-[#74C6A3]">Projects (Temporary)</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>Produces a <strong>unique</strong> product or service.</li>
+                                <li>Has a definite <strong>beginning and end</strong>.</li>
+                                <li>Focuses on achieving a <strong>specific objective</strong>.</li>
+                            </ul>
+                        </div>
+                        <div class="border-4 border-[#F4A460] rounded-lg p-6">
+                            <h3 class="text-2xl font-semibold mb-4 text-center text-[#F4A460]">Operations (Ongoing)</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>Produces <strong>repetitive</strong> outputs.</li>
+                                <li>Is continuous and <strong>sustains the business</strong>.</li>
+                                <li>Focuses on maintaining <strong>stability and efficiency</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <section id="leadership" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                        <h2 class="text-3xl font-bold text-center mb-2 text-[#00A6A6]">The Human Element</h2>
+                        <h3 class="text-xl text-center font-semibold mb-4 text-gray-700">Leadership vs. Management</h3>
+                        <p class="text-center text-gray-700 mb-8 max-w-xl mx-auto">While often intertwined, leadership and management represent different skill sets. Effective project managers balance both to guide their teams to success.</p>
+                        <div class="chart-container">
+                            <canvas id="leadershipChart"></canvas>
+                        </div>
+                    </section>
+
+                    <section id="eq" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                        <h2 class="text-3xl font-bold text-center mb-2 text-[#00A6A6]">The PM Superpower</h2>
+                         <h3 class="text-xl text-center font-semibold mb-4 text-gray-700">Emotional Intelligence (EQ)</h3>
+                        <p class="text-center text-gray-700 mb-8 max-w-xl mx-auto">EQ is the ability to understand and manage emotions in yourself and others. It is a critical factor in communication, motivation, and stakeholder relations.</p>
+                        <div class="chart-container">
+                            <canvas id="eqChart"></canvas>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button id="listenButton" class="p-2 px-4 bg-[#F15A29] text-white font-semibold rounded-full shadow-md hover:bg-[#E0451A] transition duration-200">
+                                Hear Definition 🔊
+                            </button>
+                            <audio id="eqAudio" class="hidden"></audio>
+                        </div>
+                    </section>
+                </div>
+                
+                <section id="llm-tool" class="bg-slate-100 text-gray-800 rounded-lg shadow-xl p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-center mb-8 text-[#F15A29]">✨ Practical PM Application: Scenario Generator</h2>
+                    <p class="text-center text-gray-700 mb-6 max-w-2xl mx-auto">Select a core PM concept to generate a detailed, real-world example scenario that helps solidify your understanding.</p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+                        <select id="conceptSelect" class="p-3 border border-gray-300 bg-white text-gray-800 rounded-lg shadow-sm w-full sm:w-1/3 focus:ring-[#00A6A6] focus:border-[#00A6A6]">
+                            <option value="Project">Project (Temporary & Unique)</option>
+                            <option value="Program">Program (Related Projects)</option>
+                            <option value="Portfolio">Portfolio (Strategic Alignment)</option>
+                            <option value="Operations">Operations (Ongoing & Repetitive)</option>
+                            <option value="Emotional Intelligence">Emotional Intelligence in PM</option>
+                            <option value="Leadership vs Management">Leadership vs Management</option>
+                        </select>
+                        <button id="generateButton" class="p-3 bg-[#00A6A6] text-white font-semibold rounded-lg shadow-md hover:bg-[#007A7A] transition duration-200">
+                            Generate Scenario ✨
+                        </button>
+                    </div>
+
+                    <div id="resultContainer" class="mt-8 bg-white p-6 rounded-lg shadow-inner min-h-[150px] flex items-center justify-center">
+                        <p id="resultText" class="text-gray-600 italic">Select a concept and click 'Generate Scenario' to see a practical example.</p>
+                        <div id="loadingSpinner" class="hidden spinner"></div>
+                    </div>
+                </section>
+
+            </main>
+            
+            <footer class="text-center mt-12 pt-8 border-t border-gray-700">
+                <p class="text-gray-400">A Visual Summary of Project Management Fundamentals.</p>
+            </footer>
+        </div>
+
+        <script>
+            const apiKey = "";
+            const LLM_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            const TTS_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+
+            const conceptSelect = document.getElementById('conceptSelect');
+            const generateButton = document.getElementById('generateButton');
+            const resultContainer = document.getElementById('resultContainer');
+            const resultText = document.getElementById('resultText');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const listenButton = document.getElementById('listenButton');
+            const eqAudio = document.getElementById('eqAudio');
+            const eqDefinitionText = "Emotional Intelligence (EQ) refers to the ability to recognize, understand, and manage emotions, both in oneself and in others. It is a critical factor in communication, motivation, and stakeholder relations.";
+
+            const wrapLabel = (label) => {
+                if (label.length <= 16) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).length > 16 && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = currentLine ? currentLine + ' ' + word : word;
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+
+            const leadershipLabels = [
+                'Inspiring & Influencing',
+                'Setting Direction',
+                'Empowering Individuals',
+                'Future-Oriented',
+                'Maintaining Stability',
+                'Optimizing Resources',
+                'Process Implementation'
+            ].map(wrapLabel);
+            
+            const leadershipChartCtx = document.getElementById('leadershipChart').getContext('2d');
+            new Chart(leadershipChartCtx, {
+                type: 'radar',
+                data: {
+                    labels: leadershipLabels,
+                    datasets: [{
+                        label: 'Leadership',
+                        data: [8, 9, 8, 9, 3, 4, 3],
+                        backgroundColor: 'rgba(0, 166, 166, 0.2)',
+                        borderColor: 'rgba(0, 166, 166, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(0, 166, 166, 1)'
+                    }, {
+                        label: 'Management',
+                        data: [4, 3, 4, 3, 9, 9, 9],
+                        backgroundColor: 'rgba(244, 164, 96, 0.2)',
+                        borderColor: 'rgba(244, 164, 96, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(244, 164, 96, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#ddd' }, /* Reverted for light background */
+                            grid: { color: '#ddd' },     /* Reverted for light background */
+                            pointLabels: { 
+                                font: { size: 12 },
+                                color: '#333' /* Dark text for light background */
+                            },
+                            ticks: {
+                                backdropColor: 'transparent',
+                                color: '#333', /* Dark text for light background */
+                                stepSize: 2
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#333' /* Dark text for light background */
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+
+            const eqLabels = [
+                'Self-Awareness', 
+                'Self-Management', 
+                'Empathy', 
+                'Relationship Management'
+            ].map(wrapLabel);
+
+            const eqChartCtx = document.getElementById('eqChart').getContext('2d');
+            new Chart(eqChartCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: eqLabels,
+                    datasets: [{
+                        label: 'EQ Components',
+                        data: [25, 25, 25, 25],
+                        backgroundColor: [
+                            '#00A6A6',
+                            '#74C6A3',
+                            '#F4A460',
+                            '#F15A29'
+                        ],
+                        borderColor: '#FFFFFF', /* Reverted to white for clean look on white card */
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#333', /* Dark text for light background */
+                                padding: 20,
+                                boxWidth: 15,
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+
+            const fetchWithExponentialBackoff = async (url, options, maxRetries = 5, delay = 1000) => {
+                for (let i = 0; i < maxRetries; i++) {
+                    try {
+                        const response = await fetch(url, options);
+                        if (response.ok) {
+                            return response;
+                        } else if (response.status === 429 && i < maxRetries - 1) {
+                            await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                        } else {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                    } catch (error) {
+                        if (i === maxRetries - 1) throw error;
+                        await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                    }
+                }
+            };
+            
+            const generateExample = async () => {
+                const concept = conceptSelect.value;
+                resultText.classList.add('hidden');
+                loadingSpinner.classList.remove('hidden');
+                resultContainer.style.justifyContent = 'center';
+
+                const systemPrompt = `You are a project management tutor. Your task is to generate a single, highly realistic, and concise real-world scenario (3-4 sentences max) that clearly illustrates the concept of "${concept}" in a business context. Do not include introductory or concluding phrases, just the scenario.`;
+                const userQuery = `Generate a scenario for: ${concept}`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                };
+
+                try {
+                    const response = await fetchWithExponentialBackoff(LLM_API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                    if (text) {
+                        resultText.innerHTML = `<strong>Concept: ${concept}</strong><br><br>${text}`;
+                        // Changed to text-gray-800 for contrast against light result container
+                        resultText.classList.remove('text-gray-400', 'italic');
+                        resultText.classList.add('text-gray-800');
+                    } else {
+                        resultText.innerHTML = 'Error: Could not generate scenario.';
+                        resultText.classList.add('text-gray-600', 'italic');
+                    }
+                } catch (error) {
+                    resultText.innerHTML = 'An API error occurred. Please try again.';
+                    resultText.classList.add('text-gray-600', 'italic');
+                } finally {
+                    loadingSpinner.classList.add('hidden');
+                    resultText.classList.remove('hidden');
+                }
+            };
+
+            generateButton.addEventListener('click', generateExample);
+
+            const base64ToArrayBuffer = (base64) => {
+                const binaryString = atob(base64);
+                const len = binaryString.length;
+                const bytes = new Uint8Array(len);
+                for (let i = 0; i < len; i++) {
+                    bytes[i] = binaryString.charCodeAt(i);
+                }
+                return bytes.buffer;
+            };
+
+            const pcmToWav = (pcm16, sampleRate) => {
+                const buffer = new ArrayBuffer(44 + pcm16.length * 2);
+                const view = new DataView(buffer);
+                
+                const writeString = (view, offset, string) => {
+                    for (let i = 0; i < string.length; i++) {
+                        view.setUint8(offset + i, string.charCodeAt(i));
+                    }
+                };
+
+                let offset = 0;
+                writeString(view, offset, 'RIFF'); offset += 4;
+                view.setUint32(offset, 36 + pcm16.length * 2, true); offset += 4;
+                writeString(view, offset, 'WAVE'); offset += 4;
+                writeString(view, offset, 'fmt '); offset += 4;
+                view.setUint32(offset, 16, true); offset += 4;
+                view.setUint16(offset, 1, true); offset += 2;
+                view.setUint16(offset, 1, true); offset += 2;
+                view.setUint32(offset, sampleRate, true); offset += 4;
+                view.setUint32(offset, sampleRate * 2, true); offset += 4;
+                view.setUint16(offset, 2, true); offset += 2;
+                view.setUint16(offset, 16, true); offset += 2;
+                writeString(view, offset, 'data'); offset += 4;
+                view.setUint32(offset, pcm16.length * 2, true); offset += 4;
+
+                for (let i = 0; i < pcm16.length; i++) {
+                    view.setInt16(offset, pcm16[i], true);
+                    offset += 2;
+                }
+
+                return new Blob([view], { type: 'audio/wav' });
+            };
+
+            const generateTTS = async () => {
+                listenButton.disabled = true;
+                listenButton.textContent = 'Loading Audio...';
+                
+                const payload = {
+                    contents: [{
+                        parts: [{ text: eqDefinitionText }]
+                    }],
+                    generationConfig: {
+                        responseModalities: ["AUDIO"],
+                        speechConfig: {
+                            voiceConfig: {
+                                prebuiltVoiceConfig: { voiceName: "Puck" }
+                            }
+                        }
+                    },
+                    model: "gemini-2.5-flash-preview-tts"
+                };
+
+                try {
+                    const response = await fetchWithExponentialBackoff(TTS_API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+                    
+                    const part = result?.candidates?.[0]?.content?.parts?.[0];
+                    const audioData = part?.inlineData?.data;
+                    const mimeType = part?.inlineData?.mimeType;
+
+                    if (audioData && mimeType && mimeType.startsWith("audio/L16")) {
+                        const sampleRateMatch = mimeType.match(/rate=(\d+)/);
+                        if (!sampleRateMatch) throw new Error("Could not determine sample rate from TTS response.");
+                        
+                        const sampleRate = parseInt(sampleRateMatch[1], 10);
+                        const pcmData = base64ToArrayBuffer(audioData);
+                        const pcm16 = new Int16Array(pcmData);
+                        const wavBlob = pcmToWav(pcm16, sampleRate);
+                        const audioUrl = URL.createObjectURL(wavBlob);
+
+                        eqAudio.src = audioUrl;
+                        eqAudio.play();
+                    } else {
+                        console.error("TTS generation failed or returned unexpected format.");
+                        listenButton.textContent = 'Audio Error';
+                    }
+                } catch (error) {
+                    console.error("TTS API call failed:", error);
+                    listenButton.textContent = 'Audio Error';
+                } finally {
+                    eqAudio.onended = () => {
+                        listenButton.textContent = 'Hear Definition 🔊';
+                        listenButton.disabled = false;
+                    };
+                    if (eqAudio.error) {
+                        listenButton.textContent = 'Audio Error';
+                        listenButton.disabled = false;
+                    }
+                }
+            };
+
+            listenButton.addEventListener('click', generateTTS);
+        </script>
+    </body>
+    </html>
+    
